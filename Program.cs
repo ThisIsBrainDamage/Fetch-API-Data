@@ -22,7 +22,6 @@ namespace JStoCsharp
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
-
             try {
                 // This uses the httpResponse and when they is used it'll run the code in the Curly Braces
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -33,12 +32,14 @@ namespace JStoCsharp
                     // This prints out the json file in CORRECT FORMAT
                     Console.WriteLine(JsonConvert.DeserializeObject(result));
 
+                    /*
                     // This parses the json, and only gets what we want
                     dynamic stuff = JObject.Parse(result);
                     header = stuff.wordle;
 
                     // This will write what we want to the console
                     Console.WriteLine(header);
+                    */
 
                     string stringJSON = Convert.ToString(result);
                     returnJSON(result);
@@ -46,7 +47,11 @@ namespace JStoCsharp
             } catch (Exception e) {
                 Console.WriteLine(e);
             } finally {
-                Console.WriteLine("Could not fetch data from API");
+                if(Convert.ToString(httpResponse.StatusCode) == "OK") {
+                    Console.WriteLine("Success!");
+                } else {
+                    Console.WriteLine("Could not fetch data from API");
+                }
             }
 
             // Writes the NETWORK staus code if we succeded
