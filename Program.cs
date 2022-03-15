@@ -37,6 +37,9 @@ namespace JStoCsharp
 
                 // This will write what we want to the console
                 Console.WriteLine(header);
+
+                string stringJSON = Convert.ToString(result);
+                returnJSON(result);
             }
 
             // Writes the NETWORK staus code if we succeded
@@ -45,6 +48,12 @@ namespace JStoCsharp
             } else {
                 Console.WriteLine("Failiure.");
             }
+        }
+
+        public static void returnJSON(string result) {
+            File file = new File();
+            
+            file.WriteToFile(result);
         }
     }
 }
