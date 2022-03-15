@@ -19,6 +19,8 @@ namespace JStoCsharp
             string header;
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(hide.NameReturn());
+            httpRequest.Headers.Add("username", "JustGetGoodBro");
+            httpRequest.Headers.Add("password", "Password123");
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
@@ -31,15 +33,6 @@ namespace JStoCsharp
 
                     // This prints out the json file in CORRECT FORMAT
                     Console.WriteLine(JsonConvert.DeserializeObject(result));
-
-                    /*
-                    // This parses the json, and only gets what we want
-                    dynamic stuff = JObject.Parse(result);
-                    header = stuff.wordle;
-
-                    // This will write what we want to the console
-                    Console.WriteLine(header);
-                    */
 
                     string stringJSON = Convert.ToString(result);
                     returnJSON(result);
