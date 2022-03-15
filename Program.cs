@@ -25,16 +25,25 @@ namespace JStoCsharp
             // This uses the httpResponse and when they is used it'll run the code in the Curly Braces
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
+                // This reads the result from using the httpResponse
                 var result = streamReader.ReadToEnd();
 
-                /*
+                // This prints out the json file in CORRECT FORMAT
                 Console.WriteLine(JsonConvert.DeserializeObject(result));
-                */
 
+                // This parses the json, and only gets what we want
                 dynamic stuff = JObject.Parse(result);
                 header = stuff.wordle;
 
+                // This will write what we want to the console
                 Console.WriteLine(header);
+            }
+
+            // Writes the NETWORK staus code if we succeded
+            if (Convert.ToString(httpResponse.StatusCode) == "OK") {
+                Console.WriteLine("Sucess!");
+            } else {
+                Console.WriteLine("Failiure.");
             }
         }
     }
