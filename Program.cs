@@ -12,12 +12,13 @@ namespace JStoCsharp
     {
         static void Main(string[] args)
         {
+            // Class new
+            hidden hide = new hidden();
+
             // Variables
             string header;
-            string innerHeader;
-            var url = "https://fusionsidapi.herokuapp.com/api/wordle/";
 
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            var httpRequest = (HttpWebRequest)WebRequest.Create(hide.NameReturn());
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
