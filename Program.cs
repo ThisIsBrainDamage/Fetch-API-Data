@@ -22,31 +22,56 @@ namespace JStoCsharp
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
-            // This uses the httpResponse and when they is used it'll run the code in the Curly Braces
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                // This reads the result from using the httpResponse
-                var result = streamReader.ReadToEnd();
 
-                // This prints out the json file in CORRECT FORMAT
-                Console.WriteLine(JsonConvert.DeserializeObject(result));
+            try {
+                // This uses the httpResponse and when they is used it'll run the code in the Curly Braces
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    // This reads the result from using the httpResponse
+                    var result = streamReader.ReadToEnd();
 
-                // This parses the json, and only gets what we want
-                dynamic stuff = JObject.Parse(result);
-                header = stuff.wordle;
+                    // This prints out the json file in CORRECT FORMAT
+                    Console.WriteLine(JsonConvert.DeserializeObject(result));
 
-                // This will write what we want to the console
-                Console.WriteLine(header);
+                    // This parses the json, and only gets what we want
+                    dynamic stuff = JObject.Parse(result);
+                    header = stuff.wordle;
 
-                string stringJSON = Convert.ToString(result);
-                returnJSON(result);
+                    // This will write what we want to the console
+                    Console.WriteLine(header);
+
+                    string stringJSON = Convert.ToString(result);
+                    returnJSON(result);
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e);
+            } finally {
+                Console.WriteLine("Could not fetch data from API");
             }
 
             // Writes the NETWORK staus code if we succeded
             if (Convert.ToString(httpResponse.StatusCode) == "OK") {
-                Console.WriteLine("Sucess!");
+                Console.WriteLine("Success!");
             } else {
-                Console.WriteLine("Failiure.");
+                try {
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream())) {
+                        var result = streamReader.ReadToEnd();
+
+                        // This prints out the json file in CORRECT FORMAT
+                        Console.WriteLine(JsonConvert.DeserializeObject(result));
+
+                        string stringJSON = Convert.ToString(result);
+                        returnJSON(result);
+                    }
+                } catch (Exception e) {
+                    Console.WriteLine(e);
+                } finally {
+                    if (Convert.ToString(httpResponse.StatusCode) == "OK") {
+                        Console.WriteLine("Success!");
+                    } else {
+                        Console.WriteLine("Could not fetch data from API");
+                    }
+                }
             }
         }
 
