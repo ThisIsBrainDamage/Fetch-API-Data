@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Documents\\Code Files\\Visual Studio Code\\C#\\JStoCsharp\\JStoCsharp.csproj": {}
+    "C:\\Users\\hp\\Documents\\Code Files\\Fetch_INFO\\JStoCsharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Documents\\Code Files\\Visual Studio Code\\C#\\JStoCsharp\\JStoCsharp.csproj": {
+    "C:\\Users\\hp\\Documents\\Code Files\\Fetch_INFO\\JStoCsharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Documents\\Code Files\\Visual Studio Code\\C#\\JStoCsharp\\JStoCsharp.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Documents\\Code Files\\Fetch_INFO\\JStoCsharp.csproj",
         "projectName": "JStoCsharp",
-        "projectPath": "C:\\Users\\hp\\Documents\\Code Files\\Visual Studio Code\\C#\\JStoCsharp\\JStoCsharp.csproj",
+        "projectPath": "C:\\Users\\hp\\Documents\\Code Files\\Fetch_INFO\\JStoCsharp.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Documents\\Code Files\\Visual Studio Code\\C#\\JStoCsharp\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Documents\\Code Files\\Fetch_INFO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
