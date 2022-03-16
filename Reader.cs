@@ -12,27 +12,37 @@ namespace JStoCsharp
 {
     internal class Reader
     {
-        public string ReadToken() {
-            // Read the JSON
+        public string ReadToken()
+        {
+            // This creates a new object of StreamReader, so we can READ THE .JSON Passwords.json which is hidden on Github
             StreamReader r = new StreamReader("passwords.json");
             string jsonString = r.ReadToEnd();
-            Reader m = JsonConvert.DeserializeObject<Reader>(jsonString);
 
+            // This will then DDeserialize the JSON that is saved as "string jsonString" above, then it will Parse the JSON
+            Reader m = JsonConvert.DeserializeObject<Reader>(jsonString);
             dynamic read = JObject.Parse(jsonString);
+
+            // This will then save the JSON TOKEN and only gives it's object within'
             string password = read.token;
 
+            // This will then return the token saved as "password"
             return password;
         }
 
-        public string ReadAPILink() {
-            // Read the JSON
+        /// <summary>
+            // This does the exact same thing as what was done in the function "ReadToken()"
+            // EXCEPT it'll return the API link, whihc is hidden from GIT in "passwords.json"
+        /// <summary>
+        public string ReadAPILink()
+        {
             StreamReader r = new StreamReader("passwords.json");
             string jsonString = r.ReadToEnd();
+
             Reader m = JsonConvert.DeserializeObject<Reader>(jsonString);
-
             dynamic read = JObject.Parse(jsonString);
-            string API = read.apiLink;
 
+            string API = read.apiLink;
+            
             return API;
         }
     }

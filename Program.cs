@@ -41,8 +41,8 @@ namespace JStoCsharp
 
         /// <summary>
             // This will take the 'Result" as a parameter, then it will call the class "File" 
-            // GO TO FILE FOR MORE COMMENTS
-        /// <summary>
+            // GO TO FILE "FILE" FOR MORE COMMENTS
+        /// </summary>
         public static void ReturnJSON(string result)
         {
             File file = new File();
