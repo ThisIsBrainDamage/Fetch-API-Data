@@ -40,9 +40,7 @@ namespace JStoCsharp
             } catch (Exception e) {
                 Console.WriteLine(e);
             } finally {
-                if(Convert.ToString(httpResponse.StatusCode) == "OK") {
-                    Console.WriteLine("Success!");
-                } else {
+                if(Convert.ToString(httpResponse.StatusCode) != "OK") {
                     Console.WriteLine("Could not fetch data from API");
                 }
             }
