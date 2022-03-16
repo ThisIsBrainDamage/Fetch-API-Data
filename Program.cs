@@ -12,15 +12,14 @@ namespace JStoCsharp
     {
         static void Main(string[] args)
         {
-            // Class new
-            hidden hide = new hidden();
+            // Classes
+            Reader read = new Reader();
+            string password = read.ReadPassword();
+            string username = read.ReadUserName();
 
-            // Variables
-            string header;
-
-            var httpRequest = (HttpWebRequest)WebRequest.Create(hide.NameReturn());
-            httpRequest.Headers.Add("username", "JustGetGoodBro");
-            httpRequest.Headers.Add("password", "Password123");
+            var httpRequest = (HttpWebRequest)WebRequest.Create(read.ReadAPILink());
+            httpRequest.Headers.Add("username", username);
+            httpRequest.Headers.Add("password", password);
 
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 

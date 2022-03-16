@@ -16,7 +16,7 @@ namespace JStoCsharp
             // array
             string[] stuff = { result };
 
-            string fullPath = @"C:\Users\hp\Documents\Code Files\Fetch_INFO\something.json";
+            string fullPath = "something.json";
 
             using (StreamWriter writer = new StreamWriter(fullPath)) {
                 writer.WriteLine(result);
