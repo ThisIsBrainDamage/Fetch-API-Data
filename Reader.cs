@@ -12,26 +12,14 @@ namespace JStoCsharp
 {
     internal class Reader
     {
-        public string ReadUserName() {
+        public string ReadToken() {
             // Read the JSON
             StreamReader r = new StreamReader("passwords.json");
             string jsonString = r.ReadToEnd();
             Reader m = JsonConvert.DeserializeObject<Reader>(jsonString);
 
             dynamic read = JObject.Parse(jsonString);
-            string userName = read.username;
-
-            return userName;
-        }
-
-        public string ReadPassword() {
-            // Read the JSON
-            StreamReader r = new StreamReader("passwords.json");
-            string jsonString = r.ReadToEnd();
-            Reader m = JsonConvert.DeserializeObject<Reader>(jsonString);
-
-            dynamic read = JObject.Parse(jsonString);
-            string password = read.password;
+            string password = read.token;
 
             return password;
         }

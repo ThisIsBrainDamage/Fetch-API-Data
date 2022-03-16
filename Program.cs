@@ -12,70 +12,40 @@ namespace JStoCsharp
 {
     internal class Program
     {
+        // MAIN method, this is the first method that is called when the program is written
         static void Main(string[] args)
         {
-            // Classes
+            // This calls the class and save the response to a string called "token"
             Reader read = new Reader();
-            string password = read.ReadPassword();
-            string username = read.ReadUserName();
+            string token = read.ReadToken();
 
-            // GET REQUEST 
+            // This creates a HttpRequest, adds a header, and gets the response, in that order
             var httpRequest = (HttpWebRequest)WebRequest.Create(read.ReadAPILink());
-            httpRequest.Headers.Add("username", username);
-            httpRequest.Headers.Add("password", password);
-
+            httpRequest.Headers.Add("Authorization", token);
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
 
-            try {
-                // This uses the httpResponse and when they is used it'll run the code in the Curly Braces
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    // This reads the result from using the httpResponse
-                    var result = streamReader.ReadToEnd();
-
-                    // This prints out the json file in CORRECT FORMAT
-                    Console.WriteLine(JsonConvert.DeserializeObject(result));
-
-                    string stringJSON = Convert.ToString(result);
-                    returnJSON(result);
-                }
-            } catch (Exception e) {
-                Console.WriteLine(e);
-            } finally {
-                if(Convert.ToString(httpResponse.StatusCode) != "OK") {
-                    Console.WriteLine("Could not fetch data from API");
-                }
-            }
-
-            // Writes the NETWORK staus code if we succeded
-            if (Convert.ToString(httpResponse.StatusCode) == "OK") {
-                Console.WriteLine("Success!");
-            } else {
-                try {
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream())) {
-                        var result = streamReader.ReadToEnd();
-
-                        // This prints out the json file in CORRECT FORMAT
-                        Console.WriteLine(JsonConvert.DeserializeObject(result));
-
-                        string stringJSON = Convert.ToString(result);
-                        returnJSON(result);
-                    }
-                } catch (Exception e) {
-                    Console.WriteLine(e);
-                } finally {
-                    if (Convert.ToString(httpResponse.StatusCode) == "OK") {
-                        Console.WriteLine("Success!");
-                    } else {
-                        Console.WriteLine("Could not fetch data from API");
-                    }
-                }
+            /// <summary>
+                // This uses the Streamreader class, gets the response and saves it as a variables "Result"
+                // This will then write the 'Result' to the Console
+                // it will then convert the 'Result' to a string
+                // It will the call the function "Return JSON"
+            /// </summary>
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                Console.WriteLine(JsonConvert.DeserializeObject(result));
+                string stringJSON = Convert.ToString(result);
+                ReturnJSON(result);
             }
         }
 
-        public static void returnJSON(string result) {
+        /// <summary>
+            // This will take the 'Result" as a parameter, then it will call the class "File" 
+            // GO TO FILE FOR MORE COMMENTS
+        /// <summary>
+        public static void ReturnJSON(string result)
+        {
             File file = new File();
-            
             file.WriteToFile(result);
         }
     }
