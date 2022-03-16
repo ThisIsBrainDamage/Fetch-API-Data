@@ -2,9 +2,11 @@
 using System.Net.Http;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Specialized;
 
 namespace JStoCsharp
 {
@@ -17,6 +19,7 @@ namespace JStoCsharp
             string password = read.ReadPassword();
             string username = read.ReadUserName();
 
+            // GET REQUEST 
             var httpRequest = (HttpWebRequest)WebRequest.Create(read.ReadAPILink());
             httpRequest.Headers.Add("username", username);
             httpRequest.Headers.Add("password", password);
